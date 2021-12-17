@@ -5,29 +5,31 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <!-- https://www.bootstrapcdn.com/ -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.js"></script>
     <script src="https://unpkg.com/vue@next"></script>
-    <title>Weather, simple</title>
+    <title>Weather, detailes</title>
 </head>
 
 <body>
-    <h1>Weather, simple</h1>
-
     <div id="app">
-        <!--ol v-if="weather">
-            <li v-for="d in weather.dataseries">{{d}}</li>
-        </ol-->
+        <h1>Weather<span v-if="weather">, {{formatter(weather.init)}}</span></h1>
+
+        <div v-if="weather">
+            {{weather.dataseries[0]}}
+        </div>
         <ol v-if="weather">
             <li v-for="d in weather.dataseries">
-                {{formatter(d.date)}}: {{d.weather}}
-                Temp: {{d.temp2m.min}}-{{d.temp2m.max}} celsius
-                Wind: {{d.wind10m_max}}m/s</li>
+                {{d.timepoint}}: {{d.weather}} Cloud={{d.cloudcover}},
+                Precipation={{d.prec_amount}} {{d.prec_type}}
+                Temp {{d.temp2m}} Celsius, Humidity {{d.rh2m}},
+                Wind {{ d.wind10m.direction }} {{d.wind10m.speed}}m/s
+            </li>
         </ol>
-
     </div>
-    <script src="index.js"></script>
+    <script src="index2.js"></script>
 </body>
 
 </html>
